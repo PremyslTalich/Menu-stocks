@@ -37,6 +37,36 @@ public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
 }
   ```
 
+Let's say, you need to pass a value from one menu to another
+  ```SourcePawn
+public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
+{
+    switch (iAction) {
+        case MenuAction_Select: {
+            new String:sWeapon[64];
+            GetMenuItem(hMenu, iKey, sWeapon, sizeof(sWeapon));
+            GivePlayerItem(iClient, sWeapon);
+
+			new Handle:hSubMenu = CreateMenu(MySubMenu_Handler);
+			SetMenuTitle(hSubMenu, "Choose your HP:");
+			AddMenuItem(hSubMenu, "35", "35 HP");
+			AddMenuItem(hSubMenu, "100", "100 HP");
+			AddMenuItem(hSubMenu, "300", "300 HP");
+
+			CopyMenuAny(hMenu, hSubMenu, "-MySecretValue-");
+
+			SetMenuExitBackButton(hSubMenu, true);
+			DisplayMenu(hSubMenu, iClient, 30);
+        }
+        case MenuAction_End: {
+            CloseHandle(hMenu);
+        }
+    }
+}
+  ```
+
+---
+
 Also notice function `AddMenuItemFormat`, which allows you to do
   ```SourcePawn
 AddMenuItemFormat(hMenu, "weapon_ak47", _, "AK-47 + %d ammo", 90);
