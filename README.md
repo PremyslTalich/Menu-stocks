@@ -37,7 +37,7 @@ public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
 }
   ```
 
-Also notice `AddMenuItemFormat` function, which allows you to do
+Also notice function `AddMenuItemFormat`, which allows you to do
   ```SourcePawn
 AddMenuItemFormat(hMenu, "weapon_ak47", _, "AK-47 + %d ammo", 90);
 
