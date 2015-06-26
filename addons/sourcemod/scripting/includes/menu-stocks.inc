@@ -1,7 +1,7 @@
 #if defined _menu_stocks_included_
   #endinput
 #endif
-#define _menu_stocks_included_ 1.0
+#define _menu_stocks_included_ "1.0"
 
 #include <menus>
 
