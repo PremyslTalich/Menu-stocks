@@ -1,6 +1,7 @@
 # Menu-stocks
 
-This include allows you to pass a value (cell, float or string) to menu callback. Just look at the example ;-)
+This include allows you to pass a value (cell, float or string) to menu callback.
+Just look at the example ;-) [Download](https://raw.githubusercontent.com/KissLick/Menu-stocks/master/addons/sourcemod/scripting/includes/menu-stocks.inc)
 
   ```SourcePawn
 ShowMyMenu(iClient, iSecretValue)
