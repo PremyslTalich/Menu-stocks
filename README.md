@@ -1,6 +1,6 @@
 # Menu-stocks
 
-This include allows you to pass a value to menu callback. Just look at the example ;-)
+This include allows you to pass a value (cell, float or string) to menu callback. Just look at the example ;-)
 
   ```SourcePawn
 ShowMyMenu(iClient, iSecretValue)
