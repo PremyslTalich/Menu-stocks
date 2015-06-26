@@ -1,6 +1,6 @@
 # Menu-stocks
 
-This include allows you to pass a value to menu callback. Just look at the examples ;-)
+This include allows you to pass a value to menu callback. Just look at the example ;-)
 
   ```SourcePawn
 ShowMyMenu(iClient, iSecretValue)
@@ -35,4 +35,15 @@ public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
 		}
 	}
 }
+  ```
+
+Also notice `AddMenuItemFormat` function, which allows you to do
+  ```SourcePawn
+AddMenuItemFormat(hMenu, "weapon_ak47", _, "AK-47 + %d ammo", 90);
+
+// instead of
+
+new String:sDisplay[64];
+Format(sDisplay, sizeof(sDisplay), "AK-47 + %d ammo", 90);
+AddMenuItem(hMenu, "weapon_ak47", sDisplay);
   ```
