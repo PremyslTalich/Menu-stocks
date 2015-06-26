@@ -13,6 +13,7 @@ ShowMyMenu(iClient, iSecretValue)
 	AddMenuItem(hMenu, "weapon_ak47", "AK-47");
 	AddMenuItem(hMenu, "weapon_scout", "Scout");
 	
+	// here is the magic
 	PushMenuCell(hMenu, "-MySecretValue-", iSecretValue);
 	
 	SetMenuExitBackButton(hMenu, true);
@@ -27,6 +28,7 @@ public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
 			GetMenuItem(hMenu, iKey, sWeapon, sizeof(sWeapon));
 			GivePlayerItem(iClient, sWeapon);
 			
+			// here is the magic
 			new iSecretValue = GetMenuCell(hMenu, "-MySecretValue-");		
 			
 			PrintToConsole("Player %N has secret value = %d.", iClient, iSecretValue);
@@ -53,7 +55,8 @@ public MyMenu_Handler(Handle:hMenu, MenuAction:iAction, iClient, iKey)
 			AddMenuItem(hSubMenu, "35", "35 HP");
 			AddMenuItem(hSubMenu, "100", "100 HP");
 			AddMenuItem(hSubMenu, "300", "300 HP");
-
+			
+			// here is the magic
 			CopyMenuAny(hMenu, hSubMenu, "-MySecretValue-");
 
 			SetMenuExitBackButton(hSubMenu, true);
