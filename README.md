@@ -12,7 +12,7 @@ ShowMyMenu(iClient, iSecretValue)
 	AddMenuItem(hMenu, "weapon_ak47", "AK-47");
 	AddMenuItem(hMenu, "weapon_scout", "Scout");
 	
-	PushMenuString(hMenu, "-MySecretValue-", iSecretValue);
+	PushMenuCell(hMenu, "-MySecretValue-", iSecretValue);
 	
 	SetMenuExitBackButton(hMenu, true);
 	DisplayMenu(hMenu, iClient, 30);
