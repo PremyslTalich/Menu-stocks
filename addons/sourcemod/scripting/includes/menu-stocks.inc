@@ -3,33 +3,36 @@
 #endif
 #define _menu_stocks_included_ "1.0"
 
+//Include by KissLick
+//Syntax update by Keith Warren (Drixevel) (redwerewolf on Allied Mods)
+
 #include <menus>
 
-stock PushMenuString(Handle:hndl, const String:id[], const String:data[])
+stock void PushMenuString(Handle hndl, const char[] id, const char[] data)
 {
 	AddMenuItem(hndl, id, data, ITEMDRAW_IGNORE);
 }
 
-stock PushMenuCell(Handle:hndl, const String:id[], data)
+stock void PushMenuCell(Handle hndl, const char[] id, int data)
 {
-	decl String:DataString[64];
+	char DataString[64];
 	IntToString(data, DataString, sizeof(DataString));
 	AddMenuItem(hndl, id, DataString, ITEMDRAW_IGNORE);
 }
 
-stock PushMenuFloat(Handle:hndl, const String:id[], Float:data)
+stock void PushMenuFloat(Handle hndl, const char[] id, float data)
 {
-	decl String:DataString[64];
+	char DataString[64];
 	FloatToString(data, DataString, sizeof(DataString));
 	AddMenuItem(hndl, id, DataString, ITEMDRAW_IGNORE);
 }
 
-stock bool:GetMenuString(Handle:hndl, const String:id[], String:Buffer[], size)
+stock bool GetMenuString(Handle hndl, const char[] id, char[] Buffer, int size)
 {
-	new ItemCount = GetMenuItemCount(hndl);
-	decl String:info[64], String:data[64];
+	int ItemCount = GetMenuItemCount(hndl);
+	char info[64]; char data[64];
 	
-	for (new i = 0; i < ItemCount; i++) {
+	for (int i = 0; i < ItemCount; i++) {
 		GetMenuItem(hndl, i, info, sizeof(info), _, data, sizeof(data));
 		
 		if (StrEqual(info, id)) {	
@@ -40,12 +43,12 @@ stock bool:GetMenuString(Handle:hndl, const String:id[], String:Buffer[], size)
 	return false;
 }
 
-stock GetMenuCell(Handle:hndl, const String:id[], DefaultValue = 0)
+stock int GetMenuCell(Handle hndl, const char[] id, int DefaultValue = 0)
 {
-	new ItemCount = GetMenuItemCount(hndl);
-	decl String:info[64], String:data[64];
+	int ItemCount = GetMenuItemCount(hndl);
+	char info[64]; char data[64];
 	
-	for (new i = 0; i < ItemCount; i++) {
+	for (int i = 0; i < ItemCount; i++) {
 		GetMenuItem(hndl, i, info, sizeof(info), _, data, sizeof(data));
 		
 		if (StrEqual(info, id))
@@ -54,12 +57,12 @@ stock GetMenuCell(Handle:hndl, const String:id[], DefaultValue = 0)
 	return DefaultValue;
 }
 
-stock Float:GetMenuFloat(Handle:hndl, const String:id[], Float:DefaultValue = 0.0)
+stock float GetMenuFloat(Handle hndl, const char[] id, float DefaultValue = 0.0)
 {
-	new ItemCount = GetMenuItemCount(hndl);
-	decl String:info[64], String:data[64];
+	int ItemCount = GetMenuItemCount(hndl);
+	char info[64]; char data[64];
 	
-	for (new i = 0; i < ItemCount; i++) {
+	for (int i = 0; i < ItemCount; i++) {
 		GetMenuItem(hndl, i, info, sizeof(info), _, data, sizeof(data));
 		
 		if (StrEqual(info, id))
@@ -68,12 +71,12 @@ stock Float:GetMenuFloat(Handle:hndl, const String:id[], Float:DefaultValue = 0.
 	return DefaultValue;
 }
 
-stock CopyMenuAny(Handle:source, Handle:dest, const String:id[])
+stock void CopyMenuAny(Handle source, Handle dest, const char[] id)
 {
-	new ItemCount = GetMenuItemCount(source);
-	decl String:info[64], String:data[64];
+	int ItemCount = GetMenuItemCount(source);
+	char info[64]; char data[64];
 	
-	for (new i = 0; i < ItemCount; i++) {
+	for (int i = 0; i < ItemCount; i++) {
 		GetMenuItem(source, i, info, sizeof(info), _, data, sizeof(data));
 		
 		if (StrEqual(info, id))
@@ -81,10 +84,10 @@ stock CopyMenuAny(Handle:source, Handle:dest, const String:id[])
 	}
 }
 
-stock bool:AddMenuItemFormat(&Handle:menu, const String:info[], style = ITEMDRAW_DEFAULT, const String:format[], any:...)
+stock bool AddMenuItemFormat(Handle& menu, const char[] info, int style = ITEMDRAW_DEFAULT, const char[] format, any ...)
 {
-	decl String:display[128];
+	char display[128];
 	VFormat(display, sizeof(display), format, 5);
 	
-	return bool:AddMenuItem(menu, info, display, style);
+	return view_as<bool>(AddMenuItem(menu, info, display, style));
 }
